@@ -1,0 +1,86 @@
+* 
+{
+	margin: 0; 
+	padding: 0; 
+}
+body 
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: url(Фон.png);
+}
+.topnav 
+{
+	overflow: hidden;
+}
+
+.topnav a
+{
+	float: right;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size:20px;
+}
+
+		
+.topnav a:hover 
+{
+	background-color: #ddd;
+	color: black;
+	float: right;
+}
+
+.topnav a.active
+{
+	float: left;
+	background-color: #ddd;
+	color: black;
+
+}
+.tab 
+{ 
+	float: right;
+	margin-left: 20%; 
+}
+textarea
+{
+	resize: none;
+}
+body
+{
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	background-color: gray;
+	background-width: 100%;
+	background-height: 100%;
+	background-size:cover;	
+	background-attachment:fixed;
+}	
+div
+{
+	color: white;
+}
+.containerss
+{
+	height: 500px;
+	text-align: center;
+	width: 500px;
+}
+.column {
+	display: block;
+	box-sizing: border-box;
+    width: 25%; /* новая ширина колонки */
+	height: auto;
+    margin-bottom: 20px;
+	background-color: black;
+	
+}
+.my
+{
+    display: block;
+    box-sizing: border-box;
+}
