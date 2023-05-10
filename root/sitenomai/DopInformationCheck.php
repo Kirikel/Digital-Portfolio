@@ -19,7 +19,6 @@
 	  ?>
 	</div>
 
-<html>
 
 	<head>
 		<style>
