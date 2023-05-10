@@ -1,4 +1,5 @@
-﻿<head>
+
+<head>
     <link rel="stylesheet" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<style>
@@ -6,22 +7,40 @@
 		{
 			resize: none;
 			border-radius: 10px;
+			padding: 15px;
 		}
-		body
-		{
-			position: absolute;
-			min-width: 100%;
-			min=height: 100%;
-			
-			background: url(Фон.png)  no-repeat center center;
-			background-width: 100%;
-			background-height: 100%;
-			background-size:cover;	
-			background-attachment:fixed;
-		}	
 		div
 		{
-			color: white;
+			color: black;
+		}
+		.profile a
+		{
+			background-color: black;
+			color: #f2f2f2;
+			text-align: center;
+			text-decoration: none;
+			font-size:20px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+			
+		.profile a:hover 
+		{
+			background-color: #ddd;
+			color: black;
+			float: right;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		.profile a.active
+		{
+			float: left;
+			background-color: #ddd;
+			color: black;
+			margin-top: 20px;
+			margin-bottom: 20px;
 		}
 	</style>
 </head>
@@ -61,7 +80,7 @@
 			{
 				while ($row = mysqli_fetch_assoc($result)) 
 				{
-					echo '<a href="article.php?id=' . $row['id'] . '">Профиль пользователя:</a><br>';
+					
 					echo "<h3>Фамилия: {$row['login']}</h3>";
 					echo "<h3>Имя: {$row['name']}</h3>";
 					echo "<h3>Обо мне:</h3>";
@@ -80,6 +99,7 @@
 					  $row1=mysqli_fetch_assoc($result1);
 					  echo "<td><textarea readonly cols='125' rows='15' resize='none'>". $row1["dopinfo"]."</textarea></td>";
 					  echo "<h1></h1>";
+					  echo '<div class=profile><a class=news href="article.php?id=' . $row['id'] . '">Перейти</a><br>';
 					  // Закрываем соединение с базой данных
 					  mysqli_close($connection); 
 				}
