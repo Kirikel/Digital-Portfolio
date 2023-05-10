@@ -93,7 +93,7 @@
       // Выводим данные из запроса
       $row = mysqli_fetch_assoc($result);
 	  $_SESSION['id']=$row['id'];
-	  $_SESSION['name']=$row['login'];
+	  $_SESSION['name']=$row['name'];
       echo $_SESSION['name'];
       // Закрываем соединение с базой данных
       mysqli_close($connection);
