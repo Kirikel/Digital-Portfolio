@@ -11,7 +11,7 @@
 
 		h1
 		{
-			color: white;
+			color: black;
 		}
 		.content
 		{
