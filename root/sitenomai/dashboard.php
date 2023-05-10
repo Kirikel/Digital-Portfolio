@@ -10,13 +10,13 @@
 	<style>	
 		h1
 		{
-			color: white;
+			color: black;
 		}
 		.content
 		{
 			width: 719px;
 			height: 395px;
-			color: white;
+			color: black;
 			resize: none;
 		}
 		textarea
@@ -28,7 +28,7 @@
 			left: 10px;
 			width: 719px;
 			height: 395px;
-			color: white;
+			color: black;
 			padding: 20px;
 			background: rgba(44, 44, 44, 0.15);
 			border-radius: 10px;
@@ -38,11 +38,48 @@
 		{
 			display: block;
 			box-sizing: border-box;
-			width:4%;
+			width:5%;
 			height: auto;
 			margin-bottom: 20px;
 			margin-top: 20px;
 			background-color: white;
+		}
+		.container
+		{
+			color: black;
+		}
+				.profile a
+		{
+			background-color: black;
+			color: #f2f2f2;
+			text-align: center;
+			text-decoration: none;
+			font-size:20px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+			
+		.profile a:hover 
+		{
+			background-color: #ddd;
+			color: black;
+			float: right;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		.profile a.active
+		{
+			float: left;
+			background-color: #ddd;
+			color: black;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		h1
+		{
+			color: black;
 		}
 	</style>	
 </head>
@@ -64,7 +101,7 @@
 <body>
 
 	<div class='container'>
-	<h1><div>  Фамилия: <?php
+	<h1> Фамилия: <?php
       // Подключаемся к базе данных
       $host = "localhost";
       $username = "root";
@@ -94,12 +131,12 @@
       $row = mysqli_fetch_assoc($result);
 	  $_SESSION['id']=$row['id'];
 	  $_SESSION['name']=$row['name'];
-      echo $_SESSION['name'];
+      echo $row['login'];
       // Закрываем соединение с базой данных
       mysqli_close($connection);
 	 ?>
 	</div> <h1>
-	<h1>  <div> Имя: <?php echo $_SESSION['name'];?></div> <h1>
+	<h1> Имя: <?php echo $_SESSION['name'];?> <h1>
 
 
 		
@@ -129,9 +166,9 @@
 	?>
 
 	<p></p>
-	<div class='container-button'>
-	<a class='button'; href="logout.php">Выйти</a>
-	</div>
+
+	<div class=profile><a class=news href="logout.php">Выйти</a><br>
+
     <?php
 			  // Подключаемся к базе данных
 			 $host = "localhost";
@@ -173,3 +210,4 @@
 
 </body>
 </html>
+
