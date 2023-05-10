@@ -112,7 +112,7 @@
 		<div class="col">
 				<div class="signup"> Вход</div>
 				<form action="auth2.php" method="post">
-					<input class="login" type="text" name="login" class="form-control" id="login" placeholder="Фамилия" required><br>
+					<input class="login" type="text" name="login" class="form-control" id="login" placeholder="Логин" required><br>
 					<input class="password" type="password" name="pass" class="form-control" id="pass" placeholder="Пароль" required><br>
 					<button class="btn btn-success">Войти</button><br>
 				</form> 
