@@ -17,7 +17,7 @@
 		{
 			width: 719px;
 			height: 395px;
-			color: white;
+			color: black;
 			resize: none;
 		}
 		textarea
@@ -29,7 +29,7 @@
 			left: 10px;
 			width: 719px;
 			height: 395px;
-			color: white;
+			color: black;
 			padding: 20px;
 			background: rgba(44, 44, 44, 0.15);
 			border-radius: 10px;
