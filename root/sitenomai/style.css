@@ -57,6 +57,7 @@ body
 	background-color: gray;
 	background-width: 100%;
 	background-height: 100%;
+	color: black;
 	background-size:cover;	
 	background-attachment:fixed;
 }	
@@ -73,7 +74,7 @@ div
 .column {
 	display: block;
 	box-sizing: border-box;
-    width: 25%; /* новая ширина колонки */
+    width: 25%; /* новая ширина к	олонки */
 	height: auto;
     margin-bottom: 20px;
 	background-color: black;
