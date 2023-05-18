@@ -45,20 +45,7 @@
 	</style>
 </head>
 <html>
-	<div class="topnav">
-      <a class="active" href="general.php">Дом</a>
-      <?php 
-	  session_start();
-	  if($_SESSION['login']==null) 
-	  {
-		  echo "<a class='news' href='Site.php'> Регистрация </a><a class='news' href='auth1.php'> Авторизация</a>";
-	  }
-	  else 
-	  {
-		  echo "<a class='posteto' href='post.php'>Создание статьи</a><a class='news' href='dashboard.php'>Профиль</a>";
-	  }
-	  ?>
-	</div>
+
     <body>
 
 	<div class="container-menu">
