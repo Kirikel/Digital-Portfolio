@@ -48,10 +48,10 @@
 		{
 			color: black;
 		}
-				.profile a
+		.profile a
 		{
-			background-color: black;
-			color: #f2f2f2;
+			background-color: white;
+			color: black;
 			text-align: center;
 			text-decoration: none;
 			font-size:20px;
@@ -62,18 +62,18 @@
 			
 		.profile a:hover 
 		{
-			background-color: #ddd;
-			color: black;
-			float: right;
+			background-color: black;
+			color: white;
+
 			margin-top: 20px;
 			margin-bottom: 20px;
 		}
 
 		.profile a.active
 		{
-			float: left;
-			background-color: #ddd;
-			color: black;
+
+			background-color: black;
+			color: white;
 			margin-top: 20px;
 			margin-bottom: 20px;
 		}
@@ -81,23 +81,27 @@
 		{
 			color: black;
 		}
+		.container
+		{
+			margin-top: 15%;
+		}
 	</style>	
 </head>
-
-	<div class="topnav">
-      <a class="active" href="general.php">Дом</a>
-      <?php 
-	  session_start();
-	  if($_SESSION['login']==null) 
-	  {
-		  echo "<a class='news' href='Site.php'> Регистрация </a><a class='news' href='auth.php'> Авторизация</a> ";
-	  }
-	  else 
-	  {
-		  echo "<a class='posteto' href='post.php'>Создание статьи</a><a class='news' href='dashboard.php'>Профиль</a><a class=news' href='DopInformationCheck.php'>Добавить информацию о себе </a>";
-	  }
-	  ?>
+	<div class="container-menu">
+	</div>	
+	<div class="hamburger-menu">
+	  <input id="menu__toggle" type="checkbox" />
+	  <label class="menu__btn" for="menu__toggle">
+		<span></span>
+	  </label>
+	  <ul class="menu__box">
+		<li><a class="menu__item" href="General.php">Главная</a></li>
+		<li><a class="menu__item" href="Site.php">Регистрация </a></li>
+		<li><a class="menu__item" href="auth.php">Авторизация</a></li>
+		<li><a class="menu__item" href="dashboard.php">Профиль</a></li>
+	  </ul>
 	</div>
+
 <body>
 
 	<div class='container'>
@@ -135,7 +139,7 @@
       // Закрываем соединение с базой данных
       mysqli_close($connection);
 	 ?>
-	</div> <h1>
+	 <h1>
 	<h1> Имя: <?php echo $_SESSION['name'];?> <h1>
 
 
@@ -207,7 +211,7 @@
 			  // Закрываем соединение с базой данных
 			  mysqli_close($connection);
     ?>
-
+	</div>
 </body>
 </html>
 
