@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php session_start();
+	if ($_SESSION['login']==null)
+	{
+		header("Location: http://localhost/sitenomai/Site.php");
+		exit();
+	}
+
+?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"
 
 <!DOCTYPE html>
@@ -99,6 +107,8 @@
 		<li><a class="menu__item" href="Site.php">Регистрация </a></li>
 		<li><a class="menu__item" href="auth.php">Авторизация</a></li>
 		<li><a class="menu__item" href="dashboard.php">Профиль</a></li>
+		<li><a class="menu__item" href="DopInformationCheck.php">Информация о себе</a></li>
+		<li><a class="menu__item" href="post.php">Создание поста</a></li>
 	  </ul>
 	</div>
 
