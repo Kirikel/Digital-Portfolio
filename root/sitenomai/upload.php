@@ -1,31 +1,33 @@
 <?php
-// Подключение к базе данных
-$servername = "localhost";
-$username = "root";
-$password = "usbw";
-$dbname = "register-db";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+session_start();
+if(isset($_FILES['image'])){
+    $errors= array();
+    $file_name = $_FILES['image']['name'];
+    $file_size =$_FILES['image']['size'];
+    $file_tmp =$_FILES['image']['tmp_name'];
+    $file_type=$_FILES['image']['type'];
+    
+    $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+    
+    $extensions= array("jpeg","jpg","png");
+    
+    if(in_array($file_ext,$extensions)=== false){
+        $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+    }
+    
+    if($file_size > 2097152){
+        $errors[]='File size must be less than 2 MB';
+    }
+    
+    if(empty($errors)==true)
+	{
+        move_uploaded_file($file_tmp,"images/image_profile_".$_SESSION['id'].".png");
+        echo "Success";
+    }
+	else
+	{
+        print_r($errors);
+    }
 }
-
-// Получение данных изображения из формы загрузки
-$image_name = $_FILES['image']['name'];
-$image_type = $_FILES['image']['type'];
-$image_data = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-
-// Получение ID 	пользователя из сессии или формы
-$user_id = $_SESSION['id']; // Пример использования сессии
-
-// Сохранение данных изображения в базе данных
-$sql = "INSERT INTO profiles (user_id, image_name, image_type, image_data) VALUES ($user_id, '$image_name', '$image_type', '$image_data')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Image uploaded successfully";
-} else {
-    echo "Error uploading image: " . $conn->error;
-}
-
-$conn->close();
 ?>
+
