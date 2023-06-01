@@ -1,9 +1,15 @@
+
 <?php session_start();
 	if ($_SESSION['login']==null)
 	{
 		header("Location: http://localhost/sitenomai/Site.php");
 		exit();
 	}
+	$host = "localhost";
+	$username = "root";
+	$password = "usbw";
+	$dbname = "register-bd";
+	$connection = mysqli_connect($host, $username, $password, $dbname);
 
 ?>
 
@@ -115,6 +121,41 @@
 <body>
 
 	<div class='container'>
+	<?php
+	      // Подключаемся к базе данных
+      $host = "localhost";
+      $username = "root";
+      $password = "usbw";
+      $dbname = "register-bd";
+      $connection = mysqli_connect($host, $username, $password, $dbname);
+
+      // Проверяем подключение к базе данных
+      if (mysqli_connect_errno()) {
+        echo "Ошибка подключения к базе данных: " . mysqli_connect_error();
+        exit();
+      }
+		$login=$_SESSION['login'];
+      // Запрос к базе данных
+      $query = "SELECT * FROM users WHERE login='$login'";
+
+      // Выполняем запрос
+      $result = mysqli_query($connection, $query);
+
+      // Проверяем результат запроса
+      if (!$result) {
+        echo "Ошибка выполнения запроса: " . mysqli_error($connection);
+        exit();
+      }
+
+      // Выводим данные из запроса
+      $row = mysqli_fetch_assoc($result);
+	  $_SESSION['id']=$row['id'];
+	echo '<img width="200" height="200" src="images/image_profile_33"'.$_SESSION['id'].'".png" alt="My Image"></div>';
+	?>
+	<form action="upload.php" method="POST" enctype="multipart/form-data">
+		<input type="file" name="image">
+		<input type="submit" value="Upload">
+	</form>
 	<h1> Фамилия: <?php
       // Подключаемся к базе данных
       $host = "localhost";
@@ -224,4 +265,5 @@
 	</div>
 </body>
 </html>
+
 
