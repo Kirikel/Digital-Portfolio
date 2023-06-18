@@ -15,8 +15,9 @@ if (mysqli_connect_errno()) {
 
 $login = $_POST["login"];
 $pass = $_POST["pass"];
+$name=$_POST["name"];
       // Запрос к базе данных
-$query = "SELECT * FROM users WHERE login = '$login' AND pass = '$pass'";
+$query = "SELECT * FROM users WHERE login = '$login' AND pass = '$pass' AND name='$name'";
 
       // Выполняем запрос
 $result = mysqli_query($connection, $query);
@@ -34,6 +35,7 @@ if ($result->num_rows > 0)
 	
     // Пользователь авторизова
     $_SESSION["login"] = $login;
+	$_SESSION["name"]=$name;
     header("Location: http://localhost/sitenomai/dashboard.php");
 } else {
     // Неверное имя пользователя или пароль
@@ -42,3 +44,4 @@ if ($result->num_rows > 0)
 
 $db->close();
 ?>
+
