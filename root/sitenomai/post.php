@@ -167,30 +167,4 @@
 		</div>
 	</body>
 	</div>
-</html>else 
-	  {
-		  echo "<a class='posteto' href='post.php'>Создание статьи</a>"."<a class='news' href='dashboard.php'>Профиль</a>";
-	  }
-	  ?>
-	</div>
-</html>
-
-<html>
-	<body>
-	
-		<div class="col">
-			<div>
-				<form method="post" action="postgeneric.php">
-					<label>
-						<textarea class="input" name='title' id='title' placeholder="Название" required></textarea>
-					</label>
-					<label>
-						<textarea class = 'form-item' name = 'general' id='general' class="form-control" placeholder="Контент" required></textarea>
-					</label>
-
-					<button class="btn btn-success">Добавить пост</button> <br>
-				</form>
-			</div>
-		</div>
-	</body>
 </html>

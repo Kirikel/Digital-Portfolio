@@ -7,26 +7,28 @@
 
 ?>
 <head>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="style12.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <html>
-	<div class="container-menu">
+	<div style="font-size: 50px;" class="container-menu">
+		MyCase
 	</div>	
 	<div class="hamburger-menu">
-	  <input id="menu__toggle" type="checkbox" />
-	  <label class="menu__btn" for="menu__toggle">
-		<span></span>
-	  </label>
-	  <ul class="menu__box">
-		<li><a class="menu__item" href="General.php">Главная</a></li>
-		<li><a class="menu__item" href="Site.php">Регистрация </a></li>
-		<li><a class="menu__item" href="auth.php">Авторизация</a></li>
-		<li><a class="menu__item" href="dashboard.php">Профиль</a></li>
-	  </ul>
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+
+    <ul class="menu__box">
+      <li><a class="menu__item" href="General.php">Главная</a></li>
+      <li><a class="menu__item" href="Site.php">Регистрация</a></li>
+      <li><a class="menu__item" href="auth1.php">Авторизация</a></li>
+      <li><a class="menu__item" href="dashboard.php">Профиль</a></li>
+      <li><a class="menu__item" href="post.php">Создание постов</a></li>
+	  <li><a class="menu__item" href="DopInformationCheck.php">Обо мне</a></li>
+    </ul>
 	</div>
-
-
 
 <html>
 
@@ -46,25 +48,25 @@
 			{
 
 				position: absolute;
-				width: 500px;
-				height: 650px;
-				left: 590px;
-				top: 112px;
-
+				top:15%;
+				left:25%;
+				height: 60%;
+				right:25%;
+				width:25%;
 				background: #101010;
 				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 				border-radius: 30px;
-
+				margin: auto;
 			}
 			.signup
 			{
 
 
 				position: absolute;
-				width: 250px;
-				height: 78px;
-				left: 160px;
-				top: 0px;
+				width: 5%;
+				height: 5%;
+				left: 40%;
+				top: 2%;
 
 				font-family: 'Jura';
 				font-style: normal;
@@ -81,16 +83,17 @@
 			{
 
 				box-sizing: border-box;
-
 				position: absolute;
 				width: 388px;
 				height: 44px;
-				left: 56px;
-				top: 236px;
+				left: 8%;
+				top: 25%;
+				color: white;
+				margin: auto;
 				background: #232323;
 				border: 1px solid #FFFFFF;
 				border-radius: 10px;
-				color: white;
+
 			}
 
 			.password
@@ -99,9 +102,10 @@
 				position: absolute;
 				width: 388px;
 				height: 44px;
-				left: 56px;
-				top: 364px;
+				left: 8%;
+				top: 35%;
 				color: white;
+				margin: auto;
 				background: #232323;
 				border: 1px solid #FFFFFF;
 				border-radius: 10px;
@@ -111,21 +115,24 @@
 			{
 				box-sizing: border-box;
 				position: absolute;
-				width: 388px;
-				height: 80px;
-				left: 56px;
-				top: 428px;
-				background: url(button.png);
+				border-radius: 20px;
+				width: 84%;
+				height: 15%;
+				left: 8%;
+				top: 50%;
+				font-size: 25px;
+			
 			}
 		</style>
 	</head>
 	<body>
 		<div class="col">
 				<div class="signup"> Вход</div>
-				<form action="auth2.php" method="post">
-					<input class="login" type="text" name="login" class="form-control" id="login" placeholder="Логин" required><br>
+				<form action="auth2.php" method="post">	
+					<input class="login" type="text" name="login" class="form-control" id="login" placeholder="Фамилия" required><br>
+					<input class="name" type="text" name="name" class="form-control" id="name" placeholder="Имя" required><br>
 					<input class="password" type="password" name="pass" class="form-control" id="pass" placeholder="Пароль" required><br>
-					<button class="btn btn-success">Войти</button><br>
+					<button class="btn btn-success">Зарегистрироваться</button><br>
 				</form> 
 		</div>
 		

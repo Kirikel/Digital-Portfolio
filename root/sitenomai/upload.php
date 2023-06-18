@@ -1,51 +1,68 @@
-<html>
-	<body>
-
-	<div class="container-menu">
-	</div>	
-	<div class="hamburger-menu">
-	  <input id="menu__toggle" type="checkbox" />
-	  <label class="menu__btn" for="menu__toggle">
-		<span></span>
-	  </label>
-	  <ul class="menu__box">
-		<li><a class="menu__item" href="General.php">Главная</a></li>
-		<li><a class="menu__item" href="Site.php">Регистрация </a></li>
-		<li><a class="menu__item" href="auth.php">Авторизация</a></li>
-		<li><a class="menu__item" href="dashboard.php">Профиль</a></li>
-	  </ul>
-	</div>	    
-    <div>
-<?php
-session_start();
-if(isset($_FILES['image'])){
-    $errors= array();
-    $file_name = $_FILES['image']['name'];
-    $file_size =$_FILES['image']['size'];
-    $file_tmp =$_FILES['image']['tmp_name'];
-    $file_type=$_FILES['image']['type'];
-    
-    $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
-    
-    $extensions= array("jpeg","jpg","png");
-    
-    if(in_array($file_ext,$extensions)=== false){
-        $errors[]="extension not allowed, please choose a JPEG or PNG file.";
-    }
-    
-    if($file_size > 2097152){
-        $errors[]='File size must be less than 2 MB';
-    }
-    
-    if(empty($errors)==true)
-	{
-        move_uploaded_file($file_tmp,"images/image_profile_".$_SESSION['id'].".png");
-        echo "Success";
-    }
-	else
-	{
-        print_r($errors);
-    }
-}
-?>
-</html>
+<?php 
+if(isset($_FILES['image'])) 
+{
+	
+	session_start();
+	$id=$_SESSION['id'];
+	$host = "localhost";
+	$username = "root";
+	$password = "usbw";
+	$dbname = "register-bd";
+	$connection = mysqli_connect($host, $username, $password, $dbname);
+     // Параметры для загрузки файла
+     $target_dir = "images/";
+     $file_name = basename($_FILES["image"]["name"]);
+     $target_file = $target_dir . $file_name;
+     $upload_ok = true;
+     $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+     
+     // Проверка, является ли файл изображением
+     $check = getimagesize($_FILES["image"]["tmp_name"]);
+     if(!$check) 
+	 {
+         echo "Файл не является изображением.";
+         $upload_ok = false;
+     }
+	 $target_dir="images/avatar_".$id.".".$file_type;
+     // Проверка, существует ли файл с таким именем
+     if (file_exists($target_dir)) 
+	 {
+		 echo "Файл '". $target_dir ."' успешно загружен.";
+		 $sql = "UPDATE `user_img` SET `imageurl`='$target_dir' WHERE `id_user`='$id'";
+		 mysqli_query($connection, $sql);
+		 unlink($target_dir);
+		 move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir);
+		 header("Location: http://localhost/sitenomai/dashboard.php");
+		 exit();
+     }
+     
+     // Проверка размера файла
+     if ($_FILES["image"]["size"] > 5000000) 
+	 {
+         echo "Файл слишком большой.";
+         $upload_ok = false;
+     }
+     
+     // Разрешенные типы файлов
+		 $allowed_types = array("jpg", "jpeg", "png", "gif");
+		 if(!in_array($file_type, $allowed_types)) 
+		 {
+			 echo "Неверный тип файла. Разрешены только JPG, JPEG, PNG и GIF.";
+			 $upload_ok = false;
+		 }
+     
+     // Если файл удовлетворяет всем условиям, загрузить его
+     if ($upload_ok) {
+         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir)) 
+		 {
+			move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir);
+			$sql = "INSERT INTO `user_img`(`imageurl`, `id_user`) VALUES ('$target_dir','$id')";
+			
+			mysqli_query($connection, $sql);
+			header("Location: http://localhost/sitenomai/dashboard.php");
+         } else {
+             echo "Ошибка при загрузке файла.";
+         }
+     }
+ }
+ ?>
