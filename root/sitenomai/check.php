@@ -32,6 +32,7 @@
 		$sql = "INSERT INTO users (login, name, pass) VALUES ('$login', '$name', '$pass')";
 		mysqli_query($connection, $sql);
 		$_SESSION["login"]=$login;
+		$_SESSION["name"]=$name;
 		header("Location: http://localhost/sitenomai/dashboard.php");
 		exit();
 	}
