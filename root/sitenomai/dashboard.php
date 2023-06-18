@@ -42,9 +42,10 @@
 			left: 10px;
 			width: 719px;
 			height: 395px;
-			color: black;
+			color: white;
 			padding: 20px;
-			background: rgba(44, 44, 44, 0.15);
+			background-color: black;
+			
 			border-radius: 10px;
 			resize: none;
 		}
@@ -60,7 +61,7 @@
 		}
 		.container
 		{
-			color: black;
+			text-align: center;
 		}
 		.profile a
 		{
@@ -99,28 +100,96 @@
 		{
 			margin-top: 15%;
 		}
+		textarea 
+		{
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+		#container 
+		{
+			width:50%; 
+			text-align:center;
+			
+		}
+		
+		.my
+		{
+			left: 10px;
+			color: black;
+			padding: 20px;
+			background-color: black;
+			border-radius: 10px;
+			resize: none;
+			color: white;
+		}
+		.s
+		{
+			left: 10px;
+			padding: 20px;
+			background-color: black;
+			border-radius: 10px;
+			resize: none;
+			color: white;
+			font-weight: bold; 
+			font-size: 20px;
+		    width: 645px;
+		}
+		.profile
+		{
+			text-align:center;
+		}
+		h1
+		{
+			text-align: center;
+		}
+		.center 
+		{
+			margin: 0 auto; 
+			width: 25%;
+			line-height: 1px; 
+			margin-top: 5%;
+		}
+		.container-menu
+		{
+	
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 25px;
+		}
+		#container { text-align: center width: 25%; margin:0 auto; margin-top: 5%; background-color: black; color: white; border-radius: 5%;}
+		container.image
+		{
+			text-align: center;
+		}
+
 	</style>	
 </head>
-	<div class="container-menu">
+	<div style="font-size: 50px;" class="container-menu">
+		MyCase
 	</div>	
 	<div class="hamburger-menu">
-	  <input id="menu__toggle" type="checkbox" />
-	  <label class="menu__btn" for="menu__toggle">
-		<span></span>
-	  </label>
-	  <ul class="menu__box">
-		<li><a class="menu__item" href="General.php">Главная</a></li>
-		<li><a class="menu__item" href="Site.php">Регистрация </a></li>
-		<li><a class="menu__item" href="auth.php">Авторизация</a></li>
-		<li><a class="menu__item" href="dashboard.php">Профиль</a></li>
-		<li><a class="menu__item" href="DopInformationCheck.php">Информация о себе</a></li>
-		<li><a class="menu__item" href="post.php">Создание поста</a></li>
-	  </ul>
-	</div>
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
 
+    <ul class="menu__box">
+      <li><a class="menu__item" href="General.php">Главная</a></li>
+      <li><a class="menu__item" href="Site.php">Регистрация</a></li>
+      <li><a class="menu__item" href="auth1.php">Авторизация</a></li>
+      <li><a class="menu__item" href="dashboard.php">Профиль</a></li>
+      <li><a class="menu__item" href="post.php">Создание постов</a></li>
+	  <li><a class="menu__item" href="DopInformationCheck.php">Обо мне</a></li>
+	
+    </ul>
+	</div>
 <body>
 
 	<div class='container'>
+	<div>
 	<?php
 	      // Подключаемся к базе данных
       $host = "localhost";
@@ -135,8 +204,9 @@
         exit();
       }
 		$login=$_SESSION['login'];
+		$name=$_SESSION['name'];
       // Запрос к базе данных
-      $query = "SELECT * FROM users WHERE login='$login'";
+      $query = "SELECT * FROM users WHERE login='$login' AND name='$name'";
 
       // Выполняем запрос
       $result = mysqli_query($connection, $query);
@@ -150,12 +220,19 @@
       // Выводим данные из запроса
       $row = mysqli_fetch_assoc($result);
 	  $_SESSION['id']=$row['id'];
-	echo '<img width="200" height="200" src="images/image_profile_33"'.$_SESSION['id'].'".png" alt="My Image"></div>';
-	?>
-	<form action="upload.php" method="POST" enctype="multipart/form-data">
+      $id=$row['id'];
+	  $query = "SELECT * FROM user_img WHERE id_user='$id'";
+	  $result = mysqli_query($connection, $query);
+	  $row2 = mysqli_fetch_assoc($result);
+	echo '<img width="200" height="200" src="'.$row2["imageurl"].'" alt="My Image"></div>';
+	?>	
+	<div>
+	<form  action="upload.php" method="POST" enctype="multipart/form-data">
 		<input type="file" name="image">
 		<input type="submit" value="Upload">
 	</form>
+	</div>
+	<div>
 	<h1> Фамилия: <?php
       // Подключаемся к базе данных
       $host = "localhost";
@@ -171,7 +248,7 @@
       }
 		$login=$_SESSION['login'];
       // Запрос к базе данных
-      $query = "SELECT * FROM users WHERE login='$login'";
+      $query = "SELECT * FROM users WHERE login='$login' AND name='$name'";
 
       // Выполняем запрос
       $result = mysqli_query($connection, $query);
@@ -186,17 +263,15 @@
       $row = mysqli_fetch_assoc($result);
 	  $_SESSION['id']=$row['id'];
 	  $_SESSION['name']=$row['name'];
-      echo $row['login'];
+      echo $_SESSION['login'];
       // Закрываем соединение с базой данных
       mysqli_close($connection);
 	 ?>
-	 <h1>
-	<h1> Имя: <?php echo $_SESSION['name'];?> <h1>
+	</div>
+	<div><h1> Имя: <?php echo $_SESSION['name'];?> </h1></div>
 
 
-		
-
-	<h1> Обо мне: </h1>
+	<div><h1> Обо мне: </h1></div>
 	<?php
 			  // Подключаемся к базе данных
 			 $host = "localhost";
@@ -222,7 +297,7 @@
 
 	<p></p>
 
-	<div class=profile><a class=news href="logout.php">Выйти</a><br>
+	<div><div class=profile><a class=news href="logout.php">Выйти</a></div></div><br>
 
     <?php
 			  // Подключаемся к базе данных
@@ -245,14 +320,21 @@
 			  while ($row1 = mysqli_fetch_assoc($result1)) 
 			  {
 				if($row1['id_user']!=0)
-				{	
-					echo "<div class='column'>";
-					echo "<textarea class='my' readonly cols='80' rows='2' resize='none'>" . $row1["title"] ."</textarea>";
+				{	 	
+					echo '<div id="container">';
+					echo "<div><textarea class='s' readonly cols='80' rows='2' resize='none'>" . $row1["title"] ."</textarea></div>";
 					echo "<a></a>";
-					echo "<textarea class='my' readonly cols='80' rows='29' resize='none'>". $row1["general"] . "</textarea>";
+					echo "<div><textarea class='my' readonly cols='80' rows='29' resize='none'>". $row1["general"] . "</textarea></div>";
 					echo "<a></a>";
-					echo "<textarea class='my' readonly cols='80' rows='2' resize='none'>" . $row1["timef"] . "</textarea>";
 					echo "<a></a>";
+					if ($row1['post_image']!="")
+					{
+					echo '<div><img width="70%" height="25%" src="'.$row1["post_image"].'" alt="My Image"></img></div>';
+					}
+					if ($row1['post_video']!='')
+					{
+						echo  '<div><video width="70%" height="25%" src="'.$row1["post_video"].'" controls autoplay></div>';
+					}
 					echo "</div>";				
 					
 			    }
@@ -266,4 +348,7 @@
 </body>
 </html>
 
+
+
+		
 
